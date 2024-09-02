@@ -85,7 +85,11 @@ int add_to_map(Type type, char *name, char *value) {
         return EXIT_FAILURE;
     }
     Variable *variable = malloc(sizeof(Variable));
-    variable->name = name;
+
+    const size_t len = strlen(name) + 1;
+    variable->name = malloc(len);
+    strncpy(variable->name, name, len);
+
     variable->type = type;
     if (type == TYPE_INT) {
         if (!is_integer(value)) {
