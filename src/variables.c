@@ -7,7 +7,11 @@
 #include <string.h>
 #include "variables.h"
 
-struct hashmap *vars = hashmap_new(sizeof(Variable), 0, 0, 0, var_hash, var_compare, NULL, NULL);
+struct hashmap *vars = NULL;
+
+static void __attribute__((constructor)) init_vars() {
+    vars = hashmap_new(sizeof(Variable), 0, 0, 0, var_hash, var_compare, NULL, NULL);
+}
 
 int var_compare(const void *a, const void *b, void *udata) {
     const Variable *va = a;

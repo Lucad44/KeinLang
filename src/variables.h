@@ -14,11 +14,12 @@ typedef enum {
     TYPE_DOUBLE,
     TYPE_CHAR,
     TYPE_STRING,
-    TYPE_BOOL
-} VarType;
+    TYPE_BOOL,
+    INVALID
+} Type;
 
 typedef struct {
-    VarType type;
+    Type type;
     char *name;
     union {
         int i;

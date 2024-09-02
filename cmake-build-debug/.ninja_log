@@ -1,3 +1,7 @@
 # ninja log v6
 1	198	7469812165518466	build.ninja	cdecc1e78fb350e7
 163	342	7469711035050754	keinLang.exe	65c2d42d7c3a673e
+4	118	7469834090266346	CMakeFiles/keinLang.dir/src/main.c.obj	64a999ca4680dd75
+17	128	7469834090393601	CMakeFiles/keinLang.dir/src/parser.c.obj	aa58f253bc2aaf0
+21	129	7469834090433600	CMakeFiles/keinLang.dir/src/config.c.obj	7c7f77257f4d9d40
+9	211	7469834090316355	CMakeFiles/keinLang.dir/src/hashmap.c.obj	972cd492400d2f26

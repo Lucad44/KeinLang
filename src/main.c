@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hashmap.h"
 
+#include "config.h"
+#include "variables.h"
 
 int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        return EXIT_FAILURE;
-    }
-    return EXIT_SUCCESS;
+    return parse_arguments(argc, argv);
 }

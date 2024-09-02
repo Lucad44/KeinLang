@@ -8,9 +8,9 @@
 #include <getopt.h>
 #include <stddef.h>
 
-const char *version = "0.5";
+static const char *version = "0.5";
 
-const char *help =
+static const char *help =
     "Usage: keinLang [options]\n"
     "\n"
     "  -h, --help                  Show an help message.\n"
