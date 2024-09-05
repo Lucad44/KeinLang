@@ -15,7 +15,13 @@ bool is_integer(const char *str);
 
 bool is_decimal(const char *str);
 
-int add_to_map(Type type, char *name, char *value);
+bool is_char(const char *str);
+
+bool is_string(const char *str);
+
+bool is_bool(const char *str);
+
+int add_to_map(Type type, const char *name, const char *value);
 
 int parse_file(char *file_name);
 

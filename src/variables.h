@@ -5,6 +5,10 @@
 #ifndef VARIABLES_H
 #define VARIABLES_H
 
+#define MAX_TYPE_LENGTH 64
+#define MAX_VALUE_LENGTH 2048
+
+
 #include <stdbool.h>
 #include "hashmap.h"
 
@@ -36,5 +40,9 @@ extern struct hashmap *vars;
 int var_compare(const void *a, const void *b, void *udata);
 
 uint64_t var_hash(const void *item, uint64_t seed0, uint64_t seed1);
+
+char *var_to_string(const Variable *variable);
+
+bool var_iter(const void *item, void *udata);
 
 #endif //VARIABLES_H

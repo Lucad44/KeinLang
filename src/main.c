@@ -6,5 +6,7 @@
 #include "variables.h"
 
 int main(int argc, char *argv[]) {
-    return parse_arguments(argc, argv);
+    const int ret = parse_arguments(argc, argv);
+    hashmap_scan(vars, var_iter, NULL);
+    return ret;
 }

@@ -20,9 +20,6 @@ void trim(char *str) {
 }
 
 bool is_integer(const char *str) {
-    if (*str == '\0') {
-        return false;
-    }
     if (*str == '+' || *str == '-') {
         str++;
     }
@@ -36,9 +33,6 @@ bool is_integer(const char *str) {
 }
 
 bool is_decimal(const char *str) {
-    if (*str == '\0') {
-        return false;
-    }
     if (*str == '+' || *str == '-') {
         str++;
     }
@@ -71,7 +65,19 @@ bool is_decimal(const char *str) {
     return *str == '\0' && (has_integer_part || has_fractional_part);
 }
 
-int add_to_map(Type type, char *name, char *value) {
+bool is_char(const char *str) {
+    return strlen(str) == 3 && *str == '\'' && *(str + 1) && *(str + 2) == '\'';
+}
+
+bool is_string(const char *str) {
+    return *str == '"' && *(str + strlen(str) - 1) == '"';
+}
+
+bool is_bool(const char *str) {
+    return strcmp(str, "true") == 0 || strcmp(str, "false") == 0;
+}
+
+int add_to_map(const Type type, const char *name, const char *value) {
     if (type == INVALID) {
         fprintf(stderr, "Invalid type\n");
         return EXIT_FAILURE;
@@ -86,9 +92,9 @@ int add_to_map(Type type, char *name, char *value) {
     }
     Variable *variable = malloc(sizeof(Variable));
 
-    const size_t len = strlen(name) + 1;
-    variable->name = malloc(len);
-    strncpy(variable->name, name, len);
+    const size_t name_len = strlen(name) + 1;
+    variable->name = malloc(name_len);
+    strncpy(variable->name, name, name_len);
 
     variable->type = type;
     if (type == TYPE_INT) {
@@ -107,6 +113,26 @@ int add_to_map(Type type, char *name, char *value) {
         } else {
             variable->val.d = strtod(value, NULL);
         }
+    } else if (type == TYPE_CHAR) {
+        if (!is_char(value)) {
+            fprintf(stderr, "Invalid char value\n");
+            return EXIT_FAILURE;
+        }
+        variable->val.c = value[1];
+    } else if (type == TYPE_STRING) {
+        if (!is_string(value)) {
+            fprintf(stderr, "Invalid string value\n");
+            return EXIT_FAILURE;
+        }
+        size_t value_len = strlen(value) - 1;
+        variable->val.s = malloc(value_len);
+        strncpy(variable->val.s, value + 1, value_len);
+    } else if (type == TYPE_BOOL) {
+        if (!is_bool(value)) {
+            fprintf(stderr, "Invalid bool value\n");
+            return EXIT_FAILURE;
+        }
+        variable->val.b = strcmp(value, "true") == 0;
     }
     hashmap_set(vars, &variable);
     return EXIT_SUCCESS;
@@ -134,8 +160,6 @@ int parse_line(const char *line) {
     if (is_declaration(line)) {
         return parse_variable(line);
     }
-
-
     return EXIT_SUCCESS;
 }
 
@@ -177,7 +201,7 @@ int parse_variable(const char *line) {
     trim(name);
     trim(value);
 
-    return EXIT_SUCCESS;
+    return add_to_map(get_type(type), name, value);
 }
 
 Type get_type(const char *declaration) {
