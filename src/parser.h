@@ -25,7 +25,7 @@ int add_to_map(Type type, const char *name, const char *value);
 
 int parse_file(char *file_name);
 
-int parse_line(const char *line);
+int parse_line(char *line);
 
 bool is_declaration(const char *line);
 

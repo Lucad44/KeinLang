@@ -53,8 +53,8 @@ char *var_to_string(const Variable *variable) {
         snprintf(val, MAX_VALUE_LENGTH, "invalid");
     }
 
-    size_t len = strlen(name_str) + strlen(variable->name) + strlen(type_str) + strlen(type) +
-        strlen(value_str) + strlen(val) + 1;
+    const size_t len = strlen(name_str) + strlen(variable->name) + strlen(type_str) + strlen(type) +
+                       strlen(value_str) + strlen(val) + 1;
     char *ret = malloc(len);
     snprintf(ret, len, "%s%s%s%s%s%s%s", name_str, variable->name, type_str, type, value_str, val, "\0");
     free(type);

@@ -66,11 +66,11 @@ bool is_decimal(const char *str) {
 }
 
 bool is_char(const char *str) {
-    return strlen(str) == 3 && *str == '\'' && *(str + 1) && *(str + 2) == '\'';
+    return strlen(str) == 1;
 }
 
 bool is_string(const char *str) {
-    return *str == '"' && *(str + strlen(str) - 1) == '"';
+    return strlen(str) < MAX_VALUE_LENGTH;
 }
 
 bool is_bool(const char *str) {
@@ -118,15 +118,15 @@ int add_to_map(const Type type, const char *name, const char *value) {
             fprintf(stderr, "Invalid char value\n");
             return EXIT_FAILURE;
         }
-        variable->val.c = value[1];
+        variable->val.c = value[0];
     } else if (type == TYPE_STRING) {
         if (!is_string(value)) {
             fprintf(stderr, "Invalid string value\n");
             return EXIT_FAILURE;
         }
-        size_t value_len = strlen(value) - 1;
+        const size_t value_len = strlen(value) + 1;
         variable->val.s = malloc(value_len);
-        strncpy(variable->val.s, value + 1, value_len);
+        strncpy(variable->val.s, value, value_len);
     } else if (type == TYPE_BOOL) {
         if (!is_bool(value)) {
             fprintf(stderr, "Invalid bool value\n");
@@ -156,9 +156,13 @@ int parse_file(char *file_name) {
     return EXIT_SUCCESS;
 }
 
-int parse_line(const char *line) {
-    if (is_declaration(line)) {
-        return parse_variable(line);
+int parse_line(char *line) {
+    const char *token = strtok(line, ";");
+    while (token != NULL) {
+        if (is_declaration(token)) {
+            parse_variable(token);
+        }
+        token = strtok(NULL, ";");
     }
     return EXIT_SUCCESS;
 }
@@ -174,33 +178,58 @@ int parse_variable(const char *line) {
     char name[BUFFER_SIZE] = {0};
     char value[BUFFER_SIZE] = {0};
     const char* p = line;
+
+    // Skip leading whitespace
     while (isspace(*p)) p++;
 
+    // Parse the type
     const char* type_start = p;
     while (!isspace(*p)) p++;
     strncpy(type, type_start, p - type_start);
     type[p - type_start] = '\0';
 
+    // Skip whitespace
     while (isspace(*p)) p++;
 
+    // Parse the name
     const char* name_start = p;
     while (*p != '=' && !isspace(*p)) p++;
     strncpy(name, name_start, p - name_start);
     name[p - name_start] = '\0';
 
+    // Skip to equals sign
     while (*p != '=' && *p != '\0') p++;
     if (*p == '=') p++;
 
+    // Skip whitespace after '='
     while (isspace(*p)) p++;
 
+    // Parse the value
     const char* value_start = p;
     while (*p != '\0' && *p != ';') p++;
     strncpy(value, value_start, p - value_start);
     value[p - value_start] = '\0';
+
+    // Trim type, name, and value
     trim(type);
     trim(name);
     trim(value);
 
+    // Print parsed type, name, and value
+
+
+    // Check if the value is a string literal (starts and ends with quotes)
+    if ((value[0] == '\"' && value[strlen(value) - 1] == '\"') || (value[0] == '\'' && value[strlen(value) - 1] == '\'')) {
+        // Create a local copy of value without the first and last quote
+        memmove(value, value + 1, strlen(value) - 2);  // Shift to remove first quote
+        value[strlen(value) - 2] = '\0';  // Remove last quote by terminating early
+    }
+
+    // Print the modified value if it's a string
+    //printf("Modified Value: %s\n", value);
+   // printf("Type: %s, Name: %s, Value: %s\n", type, name, value);
+
+    // Add to map or perform further processing (assumes these functions exist)
     return add_to_map(get_type(type), name, value);
 }
 

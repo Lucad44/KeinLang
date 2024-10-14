@@ -1,3 +1,3 @@
-C:/Users/lucad/Documents/KeinLang/cmake-build-debug/CMakeFiles/keinLang.dir
-C:/Users/lucad/Documents/KeinLang/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/lucad/Documents/KeinLang/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/lucad/CLionProjects/KeinLang/cmake-build-debug/CMakeFiles/keinLang.dir
+C:/Users/lucad/CLionProjects/KeinLang/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/lucad/CLionProjects/KeinLang/cmake-build-debug/CMakeFiles/rebuild_cache.dir

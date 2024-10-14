@@ -19,6 +19,7 @@ int parse_arguments(int argc, char *argv[]) {
                 printf("%s\n", help);
                 return EXIT_SUCCESS;
             case 'v':
+                printf("Current keinLang's version: %s\n", version);
                 return EXIT_SUCCESS;
             case 'f':
                 return parse_file(optarg);
