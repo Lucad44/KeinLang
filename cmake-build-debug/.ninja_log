@@ -1,19 +1,9 @@
 # ninja log v6
-1	198	7505329207494589	build.ninja	cdecc1e78fb350e7
-9	211	7469834090316355	CMakeFiles/keinLang.dir/src/hashmap.c.obj	972cd492400d2f26
-163	342	7469711035050754	keinLang.exe	65c2d42d7c3a673e
-4	118	7469834090266346	CMakeFiles/keinLang.dir/src/main.c.obj	64a999ca4680dd75
-17	128	7469834090393601	CMakeFiles/keinLang.dir/src/parser.c.obj	aa58f253bc2aaf0
-21	129	7469834090433600	CMakeFiles/keinLang.dir/src/config.c.obj	7c7f77257f4d9d40
-79	421	7505582308073938	CMakeFiles/keinLang.dir/src/variables.c.obj	b4c2b817e8743705
-40	424	7505582307685283	CMakeFiles/keinLang.dir/src/main.c.obj	baa5cc07fc6f728c
-107	426	7505582308359292	CMakeFiles/keinLang.dir/src/config.c.obj	1fb8ed290cfb9b06
-86	428	7505582308147686	CMakeFiles/keinLang.dir/src/parser.c.obj	c50fcd1e3bc5e8ec
+1	198	7528704675991280	build.ninja	cdecc1e78fb350e7
 70	448	7505582307994336	CMakeFiles/keinLang.dir/src/hashmap.c.obj	82acda2fdc2f9fa8
-449	636	7505582311772451	keinLang.exe	1c457ce780082059
-45	261	7506212219546342	CMakeFiles/keinLang.dir/src/main.c.obj	baa5cc07fc6f728c
-261	426	7506212221711136	keinLang.exe	1c457ce780082059
-5	94	7506212628025456	CMakeFiles/keinLang.dir/src/main.c.obj	baa5cc07fc6f728c
-95	204	7506212628918615	keinLang.exe	1c457ce780082059
-5	92	7506213328351262	CMakeFiles/keinLang.dir/src/main.c.obj	baa5cc07fc6f728c
-92	196	7506213329224966	keinLang.exe	1c457ce780082059
+4	91	7512267950188116	CMakeFiles/keinLang.dir/src/functions.c.obj	80336bb85330af70
+91	200	7512267951066468	keinLang.exe	926a636097b6522d
+4	104	7512267304173667	CMakeFiles/keinLang.dir/src/main.c.obj	baa5cc07fc6f728c
+12	123	7512267304245689	CMakeFiles/keinLang.dir/src/parser.c.obj	c50fcd1e3bc5e8ec
+18	116	7512267304306879	CMakeFiles/keinLang.dir/src/config.c.obj	1fb8ed290cfb9b06
+79	421	7505582308073938	CMakeFiles/keinLang.dir/src/variables.c.obj	b4c2b817e8743705
